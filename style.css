@@ -1,0 +1,15 @@
+.san_pham{
+    float: left;
+    text-align: center;
+}
+img{
+    width: 200px;
+    height: 200px;
+    border-radius: 15%;
+}
+a{
+    font-size: 20px;
+}
+a:hover{
+    color: aqua;
+}
