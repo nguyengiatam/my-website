@@ -9,7 +9,11 @@ img{
 }
 a{
     font-size: 20px;
+    color: green;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
 }
+
 a:hover{
     color: aqua;
 }
