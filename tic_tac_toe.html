@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+    <style>
+        #khung{
+            display: flex;
+            flex-direction: column;
+        }
+        .dong{
+            display: flex;
+        }
+        .o_co{
+            text-align: center;
+            padding: 0.5px;
+            width: 30px;
+            height: 30px;
+            border: solid 1px;
+        }
+        img{
+            width: 29px;
+            height: 29px;
+        }
+    </style>
+</head>
+<body>
+    <button type="button" onclick="xoa()" >Chơi Lại</button>
+    <script>
+        let day = 1; // Kiểm tra điều kiện thắng
+        let luot = true; // Trạng thái để in ra x hoặc o
+        let o_co = document.getElementsByClassName("o_co"); // Mảng các ô td
+        let x = new Array(o_co.length); // Mảng để lưu giá trị x
+        let o = new Array(o_co.length); // Mảng để lưu giá trị o
+
+        let khung = "<div id='khung'>";
+        for(let i = 0; i < 15; i++){
+            khung += "<div class='dong'>";
+            for(let j = 0; j < 30; j++){
+                khung += "<div class='o_co'></div>";
+            }
+            khung += "</div>";
+        }
+        khung += "</div>";
+        document.write(khung);
+
+        for(let i = 0; i < o_co.length; i++){
+            o_co[i].addEventListener('click', function(){
+                if(x[i] == true || o[i] == true){
+
+                }
+                else{
+                    if(luot == true){ 
+                        o_co[i].innerHTML = "<img src='/img_game_caro/x.png'>";
+                        x[i] = true;
+                        luot = false;
+                        check(i, 1, x, "X");
+                        check(i, -1, x, "X");
+                        day = 1;
+                        check(i, 30, x, "X");
+                        check(i, -30, x, "X");
+                        day = 1;
+                        check(i, 29, x, "X");
+                        check(i, -29, x, "X")
+                        day = 1;
+                        check(i, 31, x, "X");
+                        check(i, -31, x, "X");
+                        day = 1;
+                    }
+
+                    else{
+                        o[i] = true;
+                        o_co[i].innerHTML = "<img src='/img_game_caro/o.png'>";
+                        luot = true;
+                        check(i, 1, o, "O");
+                        check(i, -1, o, "O");
+                        day = 1;
+                        check(i, 30, o, "O");
+                        check(i, -30, o, "O");
+                        day = 1;
+                        check(i, 29, o, "O");
+                        check(i, -29, o, "O")
+                        day = 1;
+                        check(i, 31, o, "O");
+                        check(i, -31, o, "O");
+                        day = 1;
+                    }
+                    
+                }
+            })
+        }
+
+        //Hàm kiểm tra các giá trị xung quanh ô vừa click
+        // a là chỉ mục ô vừa click, b là chỉ mục ô tiếp theo trong dãy dựa trên a, c là mảng giá trị của ô vừa click, d là chuỗi "X" hoặc "O" để in ra
+        // Các chỉ mục dựa theo số id đã gán
+        function check(a, b, c, d){
+            
+            for(let j = a + b; c[j] != undefined; j += b){
+                       
+                day++; 
+
+                if(day >= 5){
+                    setTimeout(function(){
+                        alert( d + " win");
+                        xoa();
+                    },1)
+                    break;
+                }     
+            } 
+        }
+
+        //Hàm xóa để đưa các giá trị về trạng thái ban đầu.
+        function xoa(){
+            for(let i = 0; i < o_co.length; i++){
+                o_co[i].innerHTML = "";
+                x[i] = undefined;
+                o[i] = undefined;
+            }
+            day = 1;
+            luot = true;
+        }
+    </script>
+</body>
+</html>

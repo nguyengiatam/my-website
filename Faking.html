@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type anything slowly</title>
+    <style>
+        #khung{
+            width: 300px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        #input{
+            width: 300px;
+            height: 150px;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+    
+    </style>
+</head>
+<body>
+    <div id="khung">
+    <h2>Type anything slowly</h4>
+    <textarea id="input"></textarea>
+    </div>
+    <script>
+        let x = 1;
+        let string_out = "";
+        let out = "Ngủ đi a cay ơi!<3   Đã bảo ngủ đi rồi mà vẫn cố nhờ. -_-  ";
+        let input = document.getElementById("input");
+        input.addEventListener("keyup", function(){
+            for(let i = 0; i < x; i++){
+                string_out += out[i];
+            }
+            input.value = string_out;
+            string_out = "";
+            if(x >= out.length){
+                x = 0;
+            }
+            x++;
+        })
+    </script>
+</body>
+</html>
