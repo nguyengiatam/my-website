@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rắn Săn Mồi</title>
+    <style>
+        button{
+            background-color: rgb(128, 226, 236);
+            border-radius: 10px;
+            color: black;
+            width: 70px;
+            height: 40px;
+        }
+        #san_dau{
+            background-color: rgb(15, 176, 15);
+            border: solid 30px rgb(98, 73, 73);
+            width: 1000px;
+            height: 500px;
+            position: relative;
+        }
+        .snake{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+        }
+        #food{
+            background-color: rgb(166, 243, 42);
+            animation-name: food;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+        }
+        #end{
+            position: absolute;
+            color: red;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 70px;
+            padding: 200px;
+            margin-left: 120px;
+            display: none;
+        }
+        #reset{
+            display: none;
+        }
+        #start{
+            display: block;
+        }
+        @keyframes food{
+            0%{background-color: rgb(213, 236, 58)255, 242;}
+            10%{background-color: rgb(245, 84, 9);}
+            20%{background-color: rgb(247, 31, 11);}
+            30%{background-color: rgb(245, 9, 221);}
+            40%{background-color: rgb(178, 48, 238);}
+            50%{background-color: rgb(61, 48, 238);}
+            60%{background-color: rgb(178, 48, 238);}
+            70%{background-color: rgb(245, 9, 221);}
+            80%{background-color: rgb(247, 31, 11);}
+            90%{background-color: rgb(245, 143, 10);}
+            100%{background-color: rgb(213, 236, 58)255, 242;}
+        }
+    </style>
+</head>
+<body>
+    <div id="san_dau">
+        <div id="than_ran">
+        <div class="snake" style="top: 480px; left: 0px; background-color: red;"></div>
+        </div>
+        <div id="end"><Strong>Game Over</Strong></div>
+        <div id='food' style='top: 0px; left: 0px;'></div>
+    </div>
+    <button type="button" id="reset" onclick="restart()">Chơi lại</button>
+    <button type="button" id="start" >Bắt đầu</button>
+</body>
+<script>
+    let thuc_an = document.getElementById("food");
+    let san_dau = document.getElementById("san_dau");
+    let snake = document.getElementsByClassName("snake");
+    let huong = [1];                                              // Mảng lưu hướng di chuyển của các khối thân rắn, khởi tạo phần tử 0 di chuyển tiến lên trên.       
+    let start = document.getElementById("start");
+    let luu_diem_re = [];     
+    let luu_huong_di = [];
+    let so_not_ran = 1;
+    let stop;
+
+    start.addEventListener("click", chay);
+    function chay(){
+        document.getElementById("reset").style.display = "block";
+        start.style.display = "none";
+        let top = [];
+        let left = [];
+        stop = setInterval(function(){
+
+            for(let j = 0; j < snake.length; j++){
+                    if(luu_diem_re[j] != undefined){
+                        huong[luu_diem_re[j]] = luu_huong_di[j]; 
+                        luu_diem_re[j]++;
+                        if(luu_diem_re[j] == snake.length){
+                            luu_diem_re[j] = undefined;
+                            luu_huong_di[j] = undefined;
+                        }
+                    }
+                }
+
+            for(let i = 0; i < snake.length; i++){
+                top[i] = parseInt(snake[i].style.top);
+                left[i] = parseInt(snake[i].style.left);
+                
+                switch(huong[i]){
+                    case 1: 
+                        top[i] -= 20;
+                        break;
+
+                    case -1: 
+                        top[i] += 20;
+                        break;
+
+                    case -2: 
+                        left[i] -= 20;
+                        break;
+                    case 2: 
+                        left[i] += 20;
+                        break;
+                }
+
+                if(top[0] == -20 || top[0] == 500){
+                    end_game();
+                    break;
+                }
+
+                if(left[0] == -20 || left[0] == 1000){
+                    end_game();
+                    break;
+                }
+
+                for(let i = 1; i < snake.length; i++){
+                    
+                    if(top[0] == top[i] && left[0] == left[i]){
+                    end_game();
+                    break;
+                    }
+                }
+
+                snake[i].style.top = top[i] + "px";
+                snake[i].style.left = left[i] + "px";
+                
+                if(top[0] == x && left[0] == y){
+                    food();
+                    so_not_ran++;
+                    switch(huong[so_not_ran - 2]){
+                        case 1: 
+                            top.push(top[so_not_ran - 2] + 20);
+                            left.push(left[so_not_ran - 2]);
+                            break;
+                        case -1: 
+                            top.push(top[so_not_ran - 2] - 20);
+                            left.push(left[so_not_ran - 2]);
+                            break;
+                        case 2: 
+                            top.push(top[so_not_ran - 2]);
+                            left.push(left[so_not_ran - 2] - 20);
+                            break;
+                        case -2: 
+                            top.push(top[so_not_ran - 2]);
+                            left.push(left[so_not_ran - 2] + 20);
+                            break;
+                    }
+                    if(so_not_ran == 2){
+                        switch(huong[0]){
+                            case 1: 
+                                top[so_not_ran - 1] += 20;
+                                break;
+                            case -1: 
+                                top[so_not_ran - 1] -= 20;
+                                break;
+                            case 2: 
+                                left[so_not_ran - 1] -= 20;
+                                break;
+                            case -2:
+                                left[so_not_ran - 1] += 20;
+                        }
+                    }
+                    huong.push(huong[so_not_ran - 2]);
+                    update(top, left);           
+                }
+            }
+        },150);
+    }
+
+let x = 0;  // Tọa độ của thức ăn
+let y = 0;
+
+    window.onload = food();
+    function food(){                                            // Tạo thức ăn mới
+        do{
+            x = Math.floor(Math.random()*480);
+            y = Math.floor(Math.random()*980);
+            for(let i = 0; i < snake.length; i++){
+                if(top[i] == x && left[i] == y){
+                    x = 1;
+                    break;
+                }
+            }
+        }while(x % 20 != 0 || y % 20 != 0)
+        thuc_an.style.top = x + "px";
+        thuc_an.style.left = y + "px";
+    }
+
+    document.addEventListener("keydown",dieu_khien);            // Điều khiển hướng đi của rắn
+    function dieu_khien() {
+        
+        switch(event.keyCode){
+            case 38: 
+                if(huong[0] == -1){}
+                else{
+                    huong[0] = 1;
+                    diem_re();
+                }
+                break;
+            case 40:
+                if(huong[0] == 1){}
+                else{
+                    huong[0] = -1;
+                    diem_re();    
+                }
+                break;
+            case 37:
+                if(huong[0] == 2){}
+                else{
+                    huong[0] = -2;
+                    diem_re();    
+                }
+                break;
+            case 39:
+                if(huong[0] == -2){}
+                else{
+                    huong[0] = 2;
+                    diem_re();    
+                }
+                break;
+        }
+    }
+
+    function update(a, b){                                       // Cập nhật lại hình ảnh của thân rắn
+        let than = "";
+        for(let i = 0; i < so_not_ran; i++){
+            if(i == 0){
+                than += "<div class='snake' style='top: " + a[i] + "px; left: " + b[i] +"px; background-color: red;'></div>";
+            }
+            else if(i % 2 == 0){
+                than += "<div class='snake' style='top: " + a[i] + "px; left: " + b[i] +"px; background-color: black;'></div>";
+            }
+            else{
+                than += "<div class='snake' style='top: " + a[i] + "px; left: " + b[i] +"px; background-color: white;'></div>";
+            }
+        }
+        document.getElementById("than_ran").innerHTML = than;
+    }
+
+    function diem_re(){                                         // Lưu các điểm rẽ của con rắn
+        for(let i = 0; i < so_not_ran; i++){
+            if(luu_diem_re[i] == undefined){
+                luu_huong_di[i] = huong[0];
+                luu_diem_re[i] = 0;
+                break;
+            }
+        }
+    }
+
+    function end_game(){
+        document.getElementById("end").style.display = "block";
+        clearInterval(stop);
+    }
+
+    function restart(){
+        location.reload();
+    }
+</script>
+</html>
