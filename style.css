@@ -9,7 +9,7 @@
 }
 #menu{
     display: flex;
-    width: 60%;
+    width: 200px;
     margin: auto;
 }
 #menu a{
