@@ -1,0 +1,51 @@
+*{
+    box-sizing: border-box;
+}
+#menu{
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    margin-top: 30px;
+}
+img {
+    display: block;
+    width: 20%;
+    margin: auto;
+}
+h4{
+    text-align: center;
+}
+.box {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    padding: 10px;
+}
+.box p{
+    height: 20px;
+    margin-top: 5px;
+}
+.information{
+    border: 5px double aqua;
+}
+.users{
+    margin-left: 0.333%;
+    border: 5px double orange;
+}
+.target{
+    margin-left: 0.333%;
+    border: 5px double red;
+}
+a {
+    display: block;
+    width: 100px;
+    margin: auto;
+    margin-top: 20px;
+    color: green;
+    text-decoration: none;
+    font-size: 20px;
+}
+a:hover{
+    color: aqua;
+}
