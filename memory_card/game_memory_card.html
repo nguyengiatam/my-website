@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../jquery-3.6.0.min.js"></script>
+    <script src="card.js"></script>
+    <script src="game.js"></script>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            background: url(img/background.jpg) center center no-repeat;
+        }
+        #wrap{
+            display: flexbox;
+            flex-direction: column;
+        }
+        .row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .card{
+            display: flexbox;
+            width: 10%;
+            flex-direction: column;
+            position: relative;
+            transition: opacity 1s linear;
+        }
+        .card .front ,.card .back{
+            transition: all 0.7s;
+            backface-visibility: hidden;
+        }
+        .card .back{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            transform: rotateY(0deg);
+        }
+        .card:active .back{
+            transform: rotateY(180deg);
+        }
+        .front{
+            transform: rotateY(180deg);
+        }
+        .card:active .front{
+            transform: rotateY(0deg);
+        }
+        img{
+            width: 90%;
+        }
+    </style>
+    <title>Memory Card Game</title>
+</head>
+<body>
+    <div>
+        <div id="wrap">
+
+        </div>
+    </div>
+    <script>
+        let front = document.getElementsByClassName("front");
+        let back = document.getElementsByClassName("back");
+        let card = document.getElementsByClassName("card");
+        let wrap = document.getElementById("wrap");
+        let waitForTest = false;
+        let checkCard;
+        let game = new Game(30);
+        game.setArrayCard();
+        game.changeCard();
+        game.drawArrayCard(wrap);
+        for(let i = 0; i < card.length; i++){
+            card[i].addEventListener("click", function(){
+                if(waitForTest === true){
+
+                }
+                else{
+                    front[i].style.transform = "rotateY(0deg)";
+                    back[i].style.transform = "rotateY(180deg)";
+                    if(checkCard !== undefined && checkCard !== i){
+                        waitForTest = true;
+                        setTimeout(function(){
+                            if(front[i].innerHTML == front[checkCard].innerHTML){
+                                card[i].style.opacity = "0";
+                                card[checkCard].style.opacity = "0";
+                                checkCard = undefined;
+                            }
+                            else{
+                                front[i].style.transform = "rotateY(180deg)";
+                                back[i].style.transform = "rotateY(0deg)";
+                                front[checkCard].style.transform = "rotateY(180deg)";
+                                back[checkCard].style.transform = "rotateY(0deg)";
+                                checkCard = undefined;
+                            }
+                            waitForTest = false;
+                        },500);
+                    }
+                    else{
+                        checkCard = i;
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
