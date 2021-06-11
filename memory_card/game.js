@@ -1,6 +1,7 @@
 class Game{
-    constructor(time){
+    constructor(time, element){
         this.arrayCard = [];
+        this.audio = document.getElementsByClassName(element);
         this.time = time;
     }
 
@@ -34,5 +35,9 @@ class Game{
             html += "</div>";
         }
         element.innerHTML = html;
+    }
+
+    startGame(){
+        
     }
 }

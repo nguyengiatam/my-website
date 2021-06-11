@@ -2,16 +2,116 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="img/back.png">
+    <script src="../jquery-3.6.0.min.js"></script>
     <script src="card.js"></script>
     <script src="game.js"></script>
     <style>
         *{
             box-sizing: border-box;
         }
-        body{
-            background: url(img/background.jpg) center repeat-y;
-        }
         #wrap{
+            width: 100%;
+        }
+        #time{
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            font-size: 60px;
+            color: wheat;
+        }
+        #start_end{
+            display: block;
+            width: 90%;
+            height: 90%;
+            padding-top: 5%;
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            text-align: center;
+            font-size: 300px;
+            color: wheat;
+        }
+        #timeStart{
+            position: absolute;
+            width: 100%;
+        }
+        #buttonStartEnd{
+            display: block;
+            position: absolute;
+            flex-direction: column;
+            top: 0px;
+            width: 40%;
+            height: 60%;
+            margin-left: 30%;
+            margin-top: 5%;
+        }
+        .imgStartEnd p{
+            font-size: 40px;
+            color: rgb(248, 248, 244);
+            width: 100%;
+            height: 20%;
+            margin: 5px auto;
+        }
+        .imgStartEnd img{
+            display: block;
+            margin: auto;
+            width: 50%;
+        }
+        .imgStartEnd{
+            width: 100%;
+            height: 75%;
+        }
+        .buttonEnd button{
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+            border-radius: 20px;
+            font-size: 20px;
+            background-color: aqua;
+            color: rgb(236, 18, 84);
+            width: 30%;
+            height: 95%;
+        }
+        .buttonEnd{
+            width: 100%;
+            height: 20%;
+        }
+        .buttonStart{
+            display: flex;
+            width: 100%;
+            height: 20%;
+        }
+        .buttonStart button{
+            display: block;
+            margin: auto;
+            margin-top: 10px;
+            border-radius: 20px;
+            background-color: aqua;
+            color: black;
+            width: 30%;
+            height: 95%;
+        }
+        #buttonStart{
+            display: flexbox;
+            flex-direction: column;
+            background-color: rgb(48, 235, 31);
+            border-radius: 30px;
+            width: 100%;
+            height: 100%;
+        }
+        #buttonEnd{
+            display: none;
+            flex-direction: column;
+            background-color: rgb(209, 26, 26);
+            border-radius: 30px;
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            background: url(img/background.jpg) center no-repeat;
+        }
+        #game{
             display: flexbox;
             flex-direction: column;
         }
@@ -23,10 +123,16 @@
         }
         .card{
             display: flexbox;
-            width: 10%;
+            width: 9%;
+            height: 195px;
+            margin: 5px;
             flex-direction: column;
             position: relative;
+            transition: all 0.5s;
             transition: opacity 1s linear;
+        }
+        .card:hover{
+            box-shadow: 0px 0px 15px 0px white;
         }
         .card .front ,.card .back{
             transition: all 0.7s;
@@ -47,50 +153,112 @@
         .card:active .front{
             transform: rotateY(0deg);
         }
-        img{
-            width: 90%;
+        .card img{
+            width: 100%;
         }
     </style>
     <title>Memory Card Game</title>
 </head>
 <body>
-    <div>
-        <div id="wrap">
+    <div id="wrap">
+        <div id="time">
+            <span id="countDownEnd"></span>
+        </div>
+        <div id="game" >
 
+        </div>
+
+        <div id="start_end">
+            <div id="timeStart">
+                <span id="countDownStart">3</span>
+            </div>
+            <div id="buttonStartEnd">
+                <div id="buttonStart">
+                    <div class="imgStartEnd">
+                        <p>Sẵn sàng chưa?</p>
+                        <img id="imgStart" src="img/start0.gif" alt="start">
+                    </div>
+                    <div class="buttonStart">
+                        <button type="button" onclick="start(59)">Dễ</button>
+                        <button type="button" onclick="start(44)">Trung Bình</button>
+                        <button type="button" onclick="start(29)">Khó</button>
+                    </div>
+                </div>
+                <div id="buttonEnd">
+                    <div class="imgStartEnd">
+                        <p id="messEnd"></p>
+                        <img id="imgEnd" src="" alt="end">
+                    </div>
+                    <div class="buttonEnd">
+                        <button type="button" onclick="restart()">Chơi lại</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            <audio class="audio" src="audio/batdau.mp3"></audio>
+            <audio class="audio" src="audio/mot.mp3"></audio>
+            <audio class="audio" src="audio/hai.mp3"></audio>
+            <audio class="audio" src="audio/ba.mp3"></audio>
+            <audio class="audio" src="audio/10s.mp3"></audio>
+            <audio class="audio" src="audio/5s.mp3"></audio>
+            <audio class="audio" src="audio/banthang.mp3"></audio>
+            <audio class="audio" src="audio/banthua.mp3"></audio>
+            <audio class="audio" src="audio/hetgio.mp3"></audio>
+            <audio class="audio" src="audio/nhacnen0.mp3"></audio>
+            <audio class="audio" src="audio/nhacnen1.mp3"></audio>
+            <audio class="audio" src="audio/nhacnen2.mp3"></audio>
+            <audio class="audio" src="audio/nhacnen3.mp3"></audio>
+            <audio class="character" src="audio/dravenout.mp3"></audio>
+            <audio class="character" src="audio/teemo.mp3"></audio>
+            <audio class="character" src="audio/tf.mp3"></audio>
+            <audio class="character" src="audio/tahmkench.mp3"></audio>
+            <audio class="character" src="audio/renekton.mp3"></audio>
+            <audio class="character" src="audio/nautilus.mp3"></audio>
+            <audio class="character" src="audio/maokai.mp3"></audio>
+            <audio class="character" src="audio/thresh.mp3"></audio>
+            <audio class="character" src="audio/jinx.mp3"></audio>
+            <audio class="character" src="audio/fizz.mp3"></audio>
+            <audio class="character" src="audio/zed.mp3"></audio>
+            <audio class="character" src="audio/yasuo.mp3"></audio>
         </div>
     </div>
     <script>
-        let front = document.getElementsByClassName("front");
-        let back = document.getElementsByClassName("back");
-        let card = document.getElementsByClassName("card");
-        let wrap = document.getElementById("wrap");
+        let soundtrack = Math.floor(Math.random()*(4))+9;
+        let game = document.getElementById("game");
         let waitForTest = false;
+        let checkWin = 0;
         let checkCard;
-        let game = new Game(30);
-        game.setArrayCard();
-        game.changeCard();
-        game.drawArrayCard(wrap);
-        for(let i = 0; i < card.length; i++){
-            card[i].addEventListener("click", function(){
-                if(waitForTest === true){
+        let game1 = new Game(30, "audio");
+        game1.setArrayCard();
+        game1.changeCard();
+        game1.drawArrayCard(game);
+        $("#imgStart").attr("src", "img/start" + Math.floor(Math.random()*3) + ".gif");
+        for(let i = 0; i < $(".card").length; i++){
+            $(".card")[i].addEventListener("click", function(){
+                if(waitForTest === true || $(".card")[i].style.opacity === "0"){
 
                 }
                 else{
-                    front[i].style.transform = "rotateY(0deg)";
-                    back[i].style.transform = "rotateY(180deg)";
+                    $(".front")[i].style.transform = "rotateY(0deg)";
+                    $(".back")[i].style.transform = "rotateY(180deg)";
                     if(checkCard !== undefined && checkCard !== i){
                         waitForTest = true;
                         setTimeout(function(){
-                            if(front[i].innerHTML == front[checkCard].innerHTML){
-                                card[i].style.opacity = "0";
-                                card[checkCard].style.opacity = "0";
+                            if($(".front")[i].innerHTML == $(".front")[checkCard].innerHTML){
+                                $(".card")[i].style.opacity = "0";
+                                $(".card")[checkCard].style.opacity = "0";
+                                characterTest($(".front")[i].innerHTML);
+                                checkWin++;
                                 checkCard = undefined;
                             }
                             else{
-                                front[i].style.transform = "rotateY(180deg)";
-                                back[i].style.transform = "rotateY(0deg)";
-                                front[checkCard].style.transform = "rotateY(180deg)";
-                                back[checkCard].style.transform = "rotateY(0deg)";
+                                $(".front")[i].style.transform = "rotateY(180deg)";
+                                $(".back")[i].style.transform = "rotateY(0deg)";
+                                $(".front")[checkCard].style.transform = "rotateY(180deg)";
+                                $(".back")[checkCard].style.transform = "rotateY(0deg)";
                                 checkCard = undefined;
                             }
                             waitForTest = false;
@@ -101,6 +269,126 @@
                     }
                 }
             })
+        }
+        let timeEnd;
+        let timeCountDownEnd;
+        let timeStart;
+        let timeCountDownStart = 2;
+        function start(time){
+            timeCountDownEnd = time;
+            $("#countDownEnd").text(time + 1);
+            $("#buttonStartEnd").css("display", "none");
+            $("#buttonStart").css("display","none");
+            timeStart = setInterval(countDownStart,1000);
+            $(".audio")[timeCountDownStart + 1].play();
+
+        }
+        function countDownStart(){
+            if(timeCountDownStart < 0){  
+                $("#start_end").css("display", "none");
+                $(".audio")[soundtrack].play();
+                clearInterval(timeStart);
+                timeEnd = setInterval(countDownEnd,1000);
+            }
+            else{
+                if(timeCountDownStart == 0){
+                    $("#countDownStart").text("Bắt đầu");
+                    $(".audio")[timeCountDownStart].play();
+                }
+                else{
+                    $("#countDownStart").text(timeCountDownStart);
+                    $(".audio")[timeCountDownStart].play();
+                }
+                timeCountDownStart--;
+            }
+        }
+
+        function countDownEnd(){
+            let x = Math.floor(Math.random()*4);
+            if(timeCountDownEnd < 0){
+                endGame("Bạn thua", "img/endLoss" + x + ".gif", 7);
+            }
+            else{
+                if(checkWin == 12){
+                    endGame("Bạn Thắng", "img/endWin"+ x + ".gif", 6);
+                }else{
+                    if(timeCountDownEnd == 10){
+                        $(".audio")[4].play();
+                    }
+                    if(timeCountDownEnd == 5){
+                        $(".audio")[5].play();
+                    }
+                    if(timeCountDownEnd == 0){
+                        $("#countDownEnd").text("Hết giờ");
+                        $(".audio")[8].play();
+                    }
+                    else{
+                        $("#countDownEnd").text(timeCountDownEnd);
+                    }
+                }
+            }
+            timeCountDownEnd--;
+        }
+
+        function endGame(mess, img, audio){
+            for(let i = 0; i < $(".audio").length; i++){
+                $(".audio")[i].pause();
+            }
+            for(let i = 0; i < $(".character").length; i++){
+                $(".character")[i].pause();
+            }
+            $(".audio")[audio].play();
+            clearInterval(timeEnd);
+            $("#messEnd").text(mess);
+            $("#imgEnd").attr("src", img);
+            $("#countDownStart").text("3");
+            $("#start_end").css("display", "block");
+            $("#buttonStartEnd").css("display","block");
+            $("#buttonEnd").css("display","flex");
+        }
+        function characterTest(photoname){
+            switch(photoname){
+                case "<img src=\"img/front0.png\">": 
+                    $(".character")[0].play();
+                    break;
+                case "<img src=\"img/front1.png\">": 
+                    $(".character")[1].play();
+                    break;
+                case "<img src=\"img/front2.png\">": 
+                    $(".character")[2].play();
+                    break;
+                case "<img src=\"img/front3.png\">": 
+                    $(".character")[3].play();
+                    break;
+                case "<img src=\"img/front4.png\">": 
+                    $(".character")[4].play();
+                    break;
+                case "<img src=\"img/front5.png\">": 
+                    $(".character")[5].play();
+                    break;
+                case "<img src=\"img/front6.png\">": 
+                    $(".character")[6].play();
+                    break;
+                case "<img src=\"img/front7.png\">": 
+                    $(".character")[7].play();
+                    break;
+                case "<img src=\"img/front8.png\">": 
+                    $(".character")[8].play();
+                    break;
+                case "<img src=\"img/front9.png\">": 
+                    $(".character")[9].play();
+                    break;
+                case "<img src=\"img/front10.png\">": 
+                    $(".character")[10].play();
+                    break;
+                case "<img src=\"img/front11.png\">": 
+                    $(".character")[11].play();
+                    break;
+            }
+        }
+
+        function restart(){
+            location.reload();
         }
     </script>
 </body>
