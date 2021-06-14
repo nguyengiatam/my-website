@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lái Xe</title>
+    <script src="../jquery-3.6.0.min.js"></script>
+    <style>
+        #street{
+            display: block;
+            margin: auto;
+            transition: opacity 0.3s linear;
+            opacity: 1;
+        }
+
+        .game{
+            font-family: 'Times New Roman', Times, serif;
+            position: absolute;
+            font-size: 20px;
+            color: red;
+            left: 45%;
+        }
+        .distance {
+            top: 1%;
+        }
+        .speed{
+            top: 5%;
+        }
+        .end{
+            font-family: 'Times New Roman', Times, serif;
+            position: absolute;
+            display: none;
+            font-size: 100px;
+            color: red;
+            top: 40%;
+            left: 35%;
+        }
+        button{
+            width: 10%;
+            height: 30px;
+            border-radius: 10px;
+            margin: auto;
+            margin-top: 1px;
+            background-color: aqua;
+            text-align: center;
+        }
+        #start{
+            display: block;
+        }
+        #restart{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <canvas id="street" width="500px" height="700px"></canvas>
+        <div class="end">Game Over</div>
+        <div class="game distance"><span>Quãng đường: </span><span id="distance">0</span><span> km</span></div>
+        <div class="game speed"><span>Tốc độ: </span><span id="speed">0</span><span> km/h</span></div>
+    </div>
+    
+    <button type="button" id="start" onclick="startGame()">Chơi</button>
+    <button type="button" id="restart" onclick="restart()">Chơi Lại</button>
+    <script src="location.js"></script>
+    <script src="car.js"></script>
+    <script src="street.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
