@@ -6,160 +6,7 @@
     <script src="../jquery-3.6.0.min.js"></script>
     <script src="card.js"></script>
     <script src="game.js"></script>
-    <style>
-        *{
-            box-sizing: border-box;
-        }
-        #wrap{
-            width: 100%;
-        }
-        #time{
-            width: 100%;
-            height: 60px;
-            text-align: center;
-            padding: auto;
-            font-size: 60px;
-            color: wheat;
-        }
-        #start_end{
-            display: block;
-            width: 90%;
-            height: 90%;
-            padding-top: 5%;
-            position: absolute;
-            top: 10%;
-            left: 5%;
-            text-align: center;
-            font-size: 300px;
-            color: wheat;
-        }
-        #timeStart{
-            position: absolute;
-            width: 100%;
-        }
-        #buttonStartEnd{
-            display: block;
-            position: absolute;
-            flex-direction: column;
-            top: 0px;
-            width: 40%;
-            height: 60%;
-            margin-left: 30%;
-            margin-top: 5%;
-        }
-        .imgStartEnd p{
-            font-size: 40px;
-            color: rgb(248, 248, 244);
-            width: 100%;
-            height: 20%;
-            margin: 5px auto;
-        }
-        .imgStartEnd img{
-            display: block;
-            margin: auto;
-            width: 50%;
-        }
-        .imgStartEnd{
-            width: 100%;
-            height: 75%;
-        }
-        .buttonEnd button{
-            display: block;
-            margin: auto;
-            margin-top: 20px;
-            border-radius: 20px;
-            font-size: 20px;
-            background-color: aqua;
-            color: rgb(236, 18, 84);
-            width: 30%;
-            height: 95%;
-        }
-        .buttonEnd{
-            width: 100%;
-            height: 20%;
-        }
-        .buttonStart{
-            display: flex;
-            width: 100%;
-            height: 20%;
-        }
-        .buttonStart button{
-            display: block;
-            margin: auto;
-            margin-top: 10px;
-            border-radius: 20px;
-            background-color: aqua;
-            color: black;
-            width: 30%;
-            height: 95%;
-        }
-        #buttonStart{
-            display: flexbox;
-            flex-direction: column;
-            background-color: rgb(48, 235, 31);
-            border-radius: 30px;
-            width: 100%;
-            height: 100%;
-        }
-        #buttonEnd{
-            display: none;
-            flex-direction: column;
-            background-color: rgb(209, 26, 26);
-            border-radius: 30px;
-            width: 100%;
-            height: 100%;
-        }
-        body{
-            background: url(img/background.jpg) center no-repeat;
-        }
-        #game{
-            display: flexbox;
-            flex-direction: column;
-            width: 100%;
-        }
-        .row{
-            display: flex;
-            flex-direction:row;
-            align-items: center;
-            justify-content: center;
-            margin-top: 15px;
-            width: 100%;
-        }
-        .card{
-            display: flexbox;
-            width: 9%;
-            height: 90%;
-            margin: 5px;
-            flex-direction: column;
-            position: relative;
-            transition: opacity 1s linear;
-        }
-        .back:hover{
-            box-shadow: 0px 0px 15px 0px white;
-        }
-        .card .front ,.card .back{
-            transition: all 0.5s;
-            backface-visibility: hidden;
-        }
-        .card .back{
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            transform: rotateY(0deg);
-        }
-        .card:active .back{
-            transform: rotateY(180deg);
-        }
-        .front{
-            transform: rotateY(180deg);
-        }
-        .card:active .front{
-            transform: rotateY(0deg);
-        }
-        .card img{
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Memory Card Game</title>
 </head>
 <body>
@@ -182,8 +29,8 @@
                         <img id="imgStart" src="img/start0.gif" alt="start">
                     </div>
                     <div class="buttonStart">
-                        <button type="button" onclick="start(79)">Dễ</button>
-                        <button type="button" onclick="start(54)">Trung Bình</button>
+                        <button type="button" onclick="start(69)">Dễ</button>
+                        <button type="button" onclick="start(49)">Trung Bình</button>
                         <button type="button" onclick="start(29)">Khó</button>
                     </div>
                 </div>
@@ -195,7 +42,6 @@
                     <div class="buttonEnd">
                         <button type="button" onclick="restart()">Chơi lại</button>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -232,14 +78,13 @@
     </div>
     <script>
         let soundtrack = Math.floor(Math.random()*(6))+9;
-        let game = document.getElementById("game");
         let waitForTest = false;
         let checkWin = 0;
         let checkCard;
-        let game1 = new Game(30, "audio");
-        game1.setArrayCard();
-        game1.changeCard();
-        game1.drawArrayCard(game);
+        let game1 = new Game(30);
+        game1.setArrayCard(12);
+        game1.derangeCard();
+        game1.drawArrayCard($('#game'), 3, 8);
         $("#imgStart").attr("src", "img/start" + Math.floor(Math.random()*3) + ".gif");
         for(let i = 0; i < $(".card").length; i++){
             $(".card")[i].addEventListener("click", function(){
@@ -255,7 +100,7 @@
                             if($(".front")[i].innerHTML == $(".front")[checkCard].innerHTML){
                                 $(".card")[i].style.opacity = "0";
                                 $(".card")[checkCard].style.opacity = "0";
-                                characterTest($(".front")[i].innerHTML);
+                                checkCharacter($(".front")[i].innerHTML);
                                 checkWin++;
                                 checkCard = undefined;
                             }
@@ -351,7 +196,8 @@
             $("#buttonStartEnd").css("display","block");
             $("#buttonEnd").css("display","flex");
         }
-        function characterTest(photoname){
+
+        function checkCharacter(photoname){
             switch(photoname){
                 case "<img src=\"img/front0.png\">": 
                     $(".character")[0].play();

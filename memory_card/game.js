@@ -1,43 +1,42 @@
 class Game{
-    constructor(time, element){
+    constructor(time){
         this.arrayCard = [];
-        this.audio = document.getElementsByClassName(element);
         this.time = time;
     }
 
-    setArrayCard(){
-        for(let i = 0; i < 12; i++){
+    setArrayCard(cardNumber){
+        for(let i = 0; i < cardNumber; i++){
             this.arrayCard[i] = new Card("card" + i, "img/back.png", "img/front" + i + ".png");
         }
         this.arrayCard = this.arrayCard.concat(this.arrayCard);
     }
 
-    changeCard(){
-        let randomCard;
-        let lengthArray = this.arrayCard.length;
+    derangeCard(){
+        let random1;
+        let random2;
         let intermediary;
-        for(let i = 0;1 < lengthArray; i++){
-            randomCard = Math.floor(Math.random()*lengthArray);
-            lengthArray--;
-            intermediary = this.arrayCard[lengthArray];
-            this.arrayCard[lengthArray] = this.arrayCard[randomCard];
-            this.arrayCard[randomCard] = intermediary;
+        for(let i = 0; i < 100; i++){
+            random1 = Math.floor(Math.random()*this.arrayCard.length);
+            random2 = Math.floor(Math.random()*this.arrayCard.length);
+            if(random1 == random2){
+                i--;
+                continue;
+            }
+            intermediary = this.arrayCard[random1];
+            this.arrayCard[random1] = this.arrayCard[random2];
+            this.arrayCard[random2] = intermediary;
         }
     }
 
-    drawArrayCard(element){
+    drawArrayCard(element,row,column){
         let html = "";
-        for(let i = 0; i < 3; i++){
+        for(let i = 0; i < row; i++){
             html += "<div class='row'>";
-            for(let j = i * 8; j <(i + 1) * 8; j++){
+            for(let j = i * column; j <(i + 1) * column; j++){
                 html += this.arrayCard[j].drawCard();
             }
             html += "</div>";
         }
-        element.innerHTML = html;
-    }
-
-    startGame(){
-        
+        element.html(html);
     }
 }

@@ -1,0 +1,153 @@
+*{
+    box-sizing: border-box;
+}
+#wrap{
+    width: 100%;
+}
+#time{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    padding: auto;
+    font-size: 60px;
+    color: wheat;
+}
+#start_end{
+    display: block;
+    width: 90%;
+    height: 90%;
+    padding-top: 5%;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    text-align: center;
+    font-size: 300px;
+    color: wheat;
+}
+#timeStart{
+    position: absolute;
+    width: 100%;
+}
+#buttonStartEnd{
+    display: block;
+    position: absolute;
+    flex-direction: column;
+    font-size: 30px;
+    top: 0px;
+    width: 60%;
+    height: 80%;
+    margin-left: 20%;
+}
+.imgStartEnd p{
+    font-size: 40px;
+    color: rgb(248, 248, 244);
+    width: 100%;
+    height: 20%;
+    margin: 5px auto;
+}
+.imgStartEnd img{
+    display: block;
+    margin: auto;
+    width: 45%;
+}
+.imgStartEnd{
+    width: 100%;
+    height: 75%;
+}
+.buttonEnd button{
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 20px;
+    font-size: 30px;
+    background-color: aqua;
+    color: rgb(236, 18, 84);
+    width: 25%;
+    height: 85%;
+}
+.buttonEnd{
+    width: 100%;
+    height: 20%;
+}
+.buttonStart{
+    display: flex;
+    width: 100%;
+    height: 20%;
+}
+.buttonStart button{
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 20px;
+    font-size: 30px;
+    background-color: aqua;
+    color: black;
+    width: 25%;
+    height: 85%;
+}
+#buttonStart{
+    display: flexbox;
+    flex-direction: column;
+    background: url(img/backGroundStart.png) center;
+    border-radius: 30px;
+    width: 100%;
+    height: 100%;
+}
+#buttonEnd{
+    display: none;
+    flex-direction: column;
+    background: url(img/backGroundEnd.png) center;
+    border-radius: 30px;
+    width: 100%;
+    height: 100%;
+}
+body{
+    background: url(img/background.jpg) center no-repeat;
+}
+#game{
+    display: flexbox;
+    flex-direction: column;
+    width: 100%;
+}
+.row{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+}
+.card{
+    display: flexbox;
+    width: 9%;
+    height: 90%;
+    margin: 5px;
+    flex-direction: column;
+    position: relative;
+    transition: opacity 1s linear;
+}
+.back:hover{
+    box-shadow: 0px 0px 15px 0px white;
+}
+.card .front ,.card .back{
+    transition: all 0.5s;
+    backface-visibility: hidden;
+}
+.card .back{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transform: rotateY(0deg);
+}
+.card:active .back{
+    transform: rotateY(180deg);
+}
+.front{
+    transform: rotateY(180deg);
+}
+.card:active .front{
+    transform: rotateY(0deg);
+}
+.card img{
+    width: 100%;
+}
