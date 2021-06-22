@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Memory Card</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="timeEnd"></div>
+        <div class="game" id>
+
+        </div>
+        <div class="setupGame">
+            <div id="timeStart">3</div>
+            <div class="setup start">
+                <div class="image">
+                    <div>Bạn sẵn sàng chưa?</div>
+                    <div id="imgStart"></div>
+                </div>
+                <div class="button start">
+                    <button onclick="startGame(70)">Dễ</button>
+                    <button onclick="startGame(50)">Trung Bình</button>
+                    <button onclick="startGame(30)">Khó</button>
+                </div>
+            </div>
+            <div class="setup end">
+                <div class="image">
+                    <div><span id="msgEnd"></span></div>
+                    <div id="imgEnd"></div>
+                </div>
+                <div class="button end">
+                    <button onclick="restart()">Chơi lại</button>
+                </div>
+            </div>
+        </div>
+        <div id="show">
+            <div id="openRanking">Bảng Xếp Hạng</div>
+            <div id="ranking">
+                <div class="ranking easy">
+                    <div class="gameMode">Dễ</div>
+                    <div class="rank">
+                        <div class="information title">
+                            <div class="level">Bậc hạng</div>
+                            <div class="namePlayers">Tên người chơi</div>
+                            <div class="pointPlayers">Thời gian</div>
+                        </div>
+                        <div class="information top1">
+                            <div class="level">Hạng 1</div>
+                            <div class="namePlayers nameEasy">Nguyễn Gia Tâm</div>
+                            <div class="pointPlayers pointEasy">52s</div>
+                        </div>
+                        <div class="information top2">
+                            <div class="level">Hạng 2</div>
+                            <div class="namePlayers nameEasy"></div>
+                            <div class="pointPlayers pointEasy"></div>
+                        </div>
+                        <div class="information top3">
+                            <div class="level">Hạng 3</div>
+                            <div class="namePlayers nameEasy"></div>
+                            <div class="pointPlayers pointEasy"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ranking medium">
+                    <div class="gameMode">Trung Bình</div>
+                    <div class="rank">
+                        <div class="information title">
+                            <div class="level">Bậc hạng</div>
+                            <div class="namePlayers">Tên người chơi</div>
+                            <div class="pointPlayers">Điểm</div>
+                        </div>
+                        <div class="information top1">
+                            <div class="level">Hạng 1</div>
+                            <div class="namePlayers nameMedium"></div>
+                            <div class="pointPlayers pointMedium"></div>
+                        </div>
+                        <div class="information top2">
+                            <div class="level">Hạng 2</div>
+                            <div class="namePlayers nameMedium"></div>
+                            <div class="pointPlayers pointMedium"></div>
+                        </div>
+                        <div class="information top3">
+                            <div class="level">Hạng 3</div>
+                            <div class="namePlayers nameMedium"></div>
+                            <div class="pointPlayers pointMedium"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ranking hard">
+                    <div class="gameMode">Khó</div>
+                    <div class="rank">
+                        <div class="information title">
+                            <div class="level">Bậc hạng</div>
+                            <div class="namePlayers">Tên người chơi</div>
+                            <div class="pointPlayers">Điểm</div>
+                        </div>
+                        <div class="information top1">
+                            <div class="level">Hạng 1</div>
+                            <div class="namePlayers nameHard"></div>
+                            <div class="pointPlayers pointHard"></div>
+                        </div>
+                        <div class="information top2">
+                            <div class="level">Hạng 2</div>
+                            <div class="namePlayers nameHard"></div>
+                            <div class="pointPlayers pointHard"></div>
+                        </div>
+                        <div class="information top3">
+                            <div class="level">Hạng 3</div>
+                            <div class="namePlayers nameHard"></div>
+                            <div class="pointPlayers pointHard"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <audio class="audioStart" src="audio/batdau.mp3"></audio>
+        <audio class="audioStart" src="audio/mot.mp3"></audio>
+        <audio class="audioStart" src="audio/hai.mp3"></audio>
+        <audio class="audioStart" src="audio/ba.mp3"></audio>
+        <audio class="audioEnd" src="audio/10s.mp3"></audio>
+        <audio class="audioEnd" src="audio/5s.mp3"></audio>
+        <audio class="audioEnd" src="audio/banthang.mp3"></audio>
+        <audio class="audioEnd" src="audio/banthua.mp3"></audio>
+        <audio class="audioEnd" src="audio/hetgio.mp3"></audio>
+        <audio class="backgroundSound" src="audio/nhacnen0.mp3"></audio>
+        <audio class="backgroundSound" src="audio/nhacnen1.mp3"></audio>
+        <audio class="backgroundSound" src="audio/nhacnen2.mp3"></audio>
+        <audio class="backgroundSound" src="audio/nhacnen3.mp3"></audio>
+        <audio class="backgroundSound" src="audio/nhacnen4.mp3"></audio>
+        <audio class="backgroundSound" src="audio/nhacnen5.mp3"></audio>
+        <audio class="character" src="audio/dravenout.mp3"></audio>
+        <audio class="character" src="audio/teemo.mp3"></audio>
+        <audio class="character" src="audio/tf.mp3"></audio>
+        <audio class="character" src="audio/tahmkench.mp3"></audio>
+        <audio class="character" src="audio/renekton.mp3"></audio>
+        <audio class="character" src="audio/nautilus.mp3"></audio>
+        <audio class="character" src="audio/maokai.mp3"></audio>
+        <audio class="character" src="audio/thresh.mp3"></audio>
+        <audio class="character" src="audio/jinx.mp3"></audio>
+        <audio class="character" src="audio/fizz.mp3"></audio>
+        <audio class="character" src="audio/zed.mp3"></audio>
+        <audio class="character" src="audio/yasuo.mp3"></audio>
+    </div>
+</body>
+<script src="jquery-3.6.0.min.js"></script>
+<script src="play.js"></script>
+<script src="audio.js"></script>
+<script src="time.js"></script>
+<script src="image.js"></script>
+<script src="card.js"></script>
+<script src="main.js"></script>
+</html>
