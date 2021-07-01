@@ -90,7 +90,7 @@ body{
     top: 15%;
     left: 25%;
     width: 50%;
-    height: 70%;
+    height: 65%;
 }
 
 .image{
@@ -99,7 +99,7 @@ body{
     height: 80%;
 }
 .image img{
-    width: 55%;
+    width: 40%;
 }
 
 .button{
@@ -118,61 +118,70 @@ body{
     margin: auto;
 }
 
+button:hover{
+    background-color: aqua;
+}
+
 .end{
     display: none;
 }
 
 #ranking{
-    display: none;
+    /* display: none; */
     position: absolute;
     width: 45%;
-    height: 50%;
-    top: 15%;
+    height: 60%;
+    top: 9%;
+    left: -50%;
     font-size: 20px;
-    background: url(img/background_ranking.jpg) center no-repeat;
+    opacity: 0;
+    transition: all 0.3s linear;
+    border-radius: 20px;
 }
 .ranking{
     display: flex;
+    margin: auto;
+    border-radius: 20px;
     width: 100%;
-    height: 31%;
-    margin-top: 1.2%;
+    height: 32%;
 }
 
 .easy{
     border: 4px solid violet;
+    margin-top: 1%;
 }
 
 .medium{
     border: 4px solid red;
+    margin-top: 1%;
 }
 
 .hard{
     border: 4px solid gold;
+    margin-top: 1%;
 }
 
 .rank{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 75%;
     margin-left: 5px;
     font-size: 16px;
     text-align: center;
 }
 
-
 .gameMode{
     color: chartreuse;
-    width: 30%;
+    width: 25%;
     font-size: 30px;
     text-align: center;
-    padding-top: 6%;
-    padding-bottom: 6%;
+    padding-top: 7%;
 }
 
 #openRanking{
     position: absolute;
     color: yellow;
-    background-color: rgb(131, 233, 238);
+    background-color: rgb(29, 125, 125);
     text-align: center;
     border-radius: 10px;
     font-size: 20px;
@@ -180,44 +189,54 @@ body{
     width: 10%;
     height: 4%;
     padding: 3.5px;
-    top: 7%;
+    top: 5%;
 }
 
 #show:hover #ranking{
-    display: block;
+    /* animation: showRanking 0.3s linear; */
+    left: 0%;
+    opacity: 0.9;
+}
+#show:hover #openRanking{
+    background-color: aqua;
 }
 
 .information{
     display: flex;
-    padding-top: 2px;
+    padding-top: 0.7%;
+    border-radius: 15px;
+    background: url(img/background_ranking.jpg) center no-repeat;
 }
 
 .title{
     width: 100%;
     height: 28%;
     color: white;
-    border: solid 1px white;
+    border: solid 2px white;
 }
 
 .top1{
     width: 100%;
     height: 24%;
     color: gold;
-    border: solid 1px gold;
+    border: solid 2px gold;
+    margin-top: 2px;
 }
 
 .top2{
     width: 100%;
     height: 24%;
     color: red;
-    border: solid 1px red;
+    border: solid 2px red;
+    margin-top: 2px;
 }
 
 .top3{
     width: 100%;
     height: 24%;
     color: violet;
-    border: solid 1px violet;
+    border: solid 2px violet;
+    margin-top: 2px;
 }
 
 .level{
@@ -228,6 +247,97 @@ body{
     width: 60%;
 }
 
-.pointPlayers{
+.timePlayers{
     width: 20%;
 }
+
+.player{
+    font-size: 20px;
+}
+
+#inputNamePlayer{
+    display: block;
+    transition: all 0.3s linear;
+    width: 40%;
+    height: 25%;
+    background: url(img/background_getname.jpg) center no-repeat;
+    border-radius: 20px;
+    position: absolute;
+    top: 57%;
+    left: -40%;
+    text-align: center;
+    animation: none;
+}
+
+#getName{
+    margin-top: 5%;
+    padding-top: 3%;
+    display: flex;
+    width: 100%;
+    height: 50%;
+    text-align: center;
+}
+
+#getName .get{
+    width: 75%;
+}
+
+#getName .send{
+    width: 25%;
+}
+
+#getName input{
+    width: 90%;
+    height: 40px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.inputNamePlayer p{
+    margin: 3%;
+    font-size: 30px;
+    color: yellow;
+}
+
+#getName button{
+    width: 90%;
+    height: 40px;
+    color: red;
+    border-radius: 15px;
+    background-color: rgb(35, 174, 174);
+}
+
+#getName button:hover {
+    background-color: aqua;
+}
+
+#msgTimeWin{
+    position: absolute;
+    color: rgb(248, 14, 14);
+    font-size: 40px;
+    animation: none;
+}
+
+@keyframes showTime{
+    0%{opacity: 0; left: 0%; top: 10%;}
+    20%{opacity: 1; left: 35%; top: 10%;}
+    85%{opacity: 1; left: 35%; top: 10%;}
+    100%{opacity: 0; left: 100%; top: 10%;}
+}
+
+/* @keyframes showRanking{
+    0%{opacity: 0; left: -35%; top: 9%;}
+    30%{opacity: 0.1; left: -25%; top: 9%;}
+    60%{opacity: 0.3; left: -15%; top: 9%;}
+    90%{opacity: 0.5; left: -5%; top: 9%;}
+    100%{opacity: 0.7; left: 0%; top: 9%;}
+} */
+
+/* @keyframes showGetName{
+    0%{opacity: 0; left: -40%;}
+    30%{opacity: 0.3; left: -15%;}
+    60%{opacity: 0.6; left: 10%;}
+    90%{opacity: 0.9; left: 35%;}
+    100%{opacity: 1; left: 30%;}
+} */

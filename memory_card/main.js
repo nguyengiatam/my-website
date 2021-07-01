@@ -4,6 +4,7 @@ let gameStatus;
 let game = new Play($(".setupGame"), $(".start"), $(".end"), $("#msgEnd"));
 let time = new Time($(".audioStart"), $(".audioEnd"), $(".backgroundSound"), $("#timeStart"), $(".timeEnd"))
 let image = new Image($("#imgStart"), $("#imgEnd"));
+let player = new Player($("#inputNamePlayer"),$(".nameEasy"), $(".timeEasy"), $(".nameMedium"), $(".timeMedium"), $(".nameHard"), $(".timeHard"), $("#msgTimeWin"));
 let listCard = game.setupListCard(12, $(".character"));
 game.changeLocationCard(listCard);
 game.drawListCard(listCard, $(".game"), 3, 8);
@@ -12,6 +13,7 @@ image.setImageStart(3);
 image.setImageWin(4);
 image.setImageLose(4);
 image.showImageStart();
+player.printDataPlayer();
 
 $(".card").click(function(){
     if(waitForTest == true || $(this).css("opacity") == "0"){
@@ -34,8 +36,10 @@ $(".card").click(function(){
     }
 })
 
-function startGame(timeEnd){
+function startGame(timeEnd, level){
     time.startGame(timeEnd);
+    player.setLevel(level);
+    player.getData(level);
     game.startGame();
     countDownBegins();
 }
@@ -56,6 +60,7 @@ function countDownBegins(){
 function countDownTimeOut(){
     setTimeout(function(){
         time.countDownTimeOut();
+        player.countingTime();
         if(game.checkWin == 12){
             endGame("win");
         }
@@ -69,11 +74,13 @@ function countDownTimeOut(){
 }
 
 function endGame(status){
-    for(let stop of listCard){
-        stop.stopAudioCard();
+    for(let card of listCard){
+        card.stopAudioCard();
     }
     switch(status){
         case "win": 
+            player.checkRankings();
+            player.showTimeWin();
             game.endWin();
             image.showImageWin();
             time.endWin();
@@ -88,4 +95,13 @@ function endGame(status){
 
 function restart(){
     location.reload();
+}
+
+function setNamePlayer(){
+    let name = $("#getNamePlayer").val();
+    if(name){
+        player.setName(name);
+        player.sortData();
+        player.printDataPlayer();
+    }
 }

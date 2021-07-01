@@ -19,9 +19,9 @@
                     <div id="imgStart"></div>
                 </div>
                 <div class="button start">
-                    <button onclick="startGame(70)">Dễ</button>
-                    <button onclick="startGame(50)">Trung Bình</button>
-                    <button onclick="startGame(30)">Khó</button>
+                    <button onclick="startGame(70, 'easy')">Dễ</button>
+                    <button onclick="startGame(50, 'medium')">Trung Bình</button>
+                    <button onclick="startGame(30, 'hard')">Khó</button>
                 </div>
             </div>
             <div class="setup end">
@@ -34,31 +34,39 @@
                 </div>
             </div>
         </div>
+        <div id="inputNamePlayer">
+            <div class="inputNamePlayer"><p>Bạn đã có một chỗ trong bảng xếp hạng</p></div>
+            <div id="getName">
+                <div class="inputNamePlayer get"><input type="text" id="getNamePlayer" placeholder="Nhập vào tên của bạn"></div>
+                <div class="inputNamePlayer send"><button type="button" onclick="setNamePlayer()">Xong</button></div>
+            </div>
+        </div>
+        <div id="msgTimeWin"></div>
         <div id="show">
             <div id="openRanking">Bảng Xếp Hạng</div>
             <div id="ranking">
-                <div class="ranking easy">
-                    <div class="gameMode">Dễ</div>
+                <div class="ranking hard">
+                    <div class="gameMode">Khó</div>
                     <div class="rank">
                         <div class="information title">
                             <div class="level">Bậc hạng</div>
                             <div class="namePlayers">Tên người chơi</div>
-                            <div class="pointPlayers">Thời gian</div>
+                            <div class="timePlayers">Thời gian</div>
                         </div>
                         <div class="information top1">
                             <div class="level">Hạng 1</div>
-                            <div class="namePlayers nameEasy">Nguyễn Gia Tâm</div>
-                            <div class="pointPlayers pointEasy">52s</div>
+                            <div class="namePlayers player nameHard"></div>
+                            <div class="timePlayers player timeHard"></div>
                         </div>
                         <div class="information top2">
                             <div class="level">Hạng 2</div>
-                            <div class="namePlayers nameEasy"></div>
-                            <div class="pointPlayers pointEasy"></div>
+                            <div class="namePlayers player nameHard"></div>
+                            <div class="timePlayers player timeHard"></div>
                         </div>
                         <div class="information top3">
                             <div class="level">Hạng 3</div>
-                            <div class="namePlayers nameEasy"></div>
-                            <div class="pointPlayers pointEasy"></div>
+                            <div class="namePlayers player nameHard"></div>
+                            <div class="timePlayers player timeHard"></div>
                         </div>
                     </div>
                 </div>
@@ -68,47 +76,47 @@
                         <div class="information title">
                             <div class="level">Bậc hạng</div>
                             <div class="namePlayers">Tên người chơi</div>
-                            <div class="pointPlayers">Điểm</div>
+                            <div class="timePlayers">Thời gian</div>
                         </div>
                         <div class="information top1">
                             <div class="level">Hạng 1</div>
-                            <div class="namePlayers nameMedium"></div>
-                            <div class="pointPlayers pointMedium"></div>
+                            <div class="namePlayers player nameMedium"></div>
+                            <div class="timePlayers player timeMedium"></div>
                         </div>
                         <div class="information top2">
                             <div class="level">Hạng 2</div>
-                            <div class="namePlayers nameMedium"></div>
-                            <div class="pointPlayers pointMedium"></div>
+                            <div class="namePlayers player nameMedium"></div>
+                            <div class="timePlayers player timeMedium"></div>
                         </div>
                         <div class="information top3">
                             <div class="level">Hạng 3</div>
-                            <div class="namePlayers nameMedium"></div>
-                            <div class="pointPlayers pointMedium"></div>
+                            <div class="namePlayers player nameMedium"></div>
+                            <div class="timePlayers player timeMedium"></div>
                         </div>
                     </div>
                 </div>
-                <div class="ranking hard">
-                    <div class="gameMode">Khó</div>
+                <div class="ranking easy">
+                    <div class="gameMode">Dễ</div>
                     <div class="rank">
                         <div class="information title">
                             <div class="level">Bậc hạng</div>
                             <div class="namePlayers">Tên người chơi</div>
-                            <div class="pointPlayers">Điểm</div>
+                            <div class="timePlayers">Thời gian</div>
                         </div>
                         <div class="information top1">
                             <div class="level">Hạng 1</div>
-                            <div class="namePlayers nameHard"></div>
-                            <div class="pointPlayers pointHard"></div>
+                            <div class="namePlayers player nameEasy"></div>
+                            <div class="timePlayers player timeEasy"></div>
                         </div>
                         <div class="information top2">
                             <div class="level">Hạng 2</div>
-                            <div class="namePlayers nameHard"></div>
-                            <div class="pointPlayers pointHard"></div>
+                            <div class="namePlayers player nameEasy"></div>
+                            <div class="timePlayers player timeEasy"></div>
                         </div>
                         <div class="information top3">
                             <div class="level">Hạng 3</div>
-                            <div class="namePlayers nameHard"></div>
-                            <div class="pointPlayers pointHard"></div>
+                            <div class="namePlayers player nameEasy"></div>
+                            <div class="timePlayers player timeEasy"></div>
                         </div>
                     </div>
                 </div>
@@ -146,6 +154,7 @@
     </div>
 </body>
 <script src="jquery-3.6.0.min.js"></script>
+<script src="player.js"></script>
 <script src="play.js"></script>
 <script src="audio.js"></script>
 <script src="time.js"></script>
