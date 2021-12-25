@@ -1,329 +1,353 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
-body{
-    background: url(img/background.jpg) center no-repeat;;
+body {
+  background: url(img/background.jpg) center no-repeat;
 }
-.wrap{
-    width: 100%;
-    max-height: 1080px;
+.wrap {
+  width: 100%;
+  max-height: 1080px;
 }
-.timeEnd{
-    width: 100%;
-    height: 50px;
-    color: rgb(26, 187, 85);
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 60px;
-    text-align: center;
+.timeEnd {
+  width: 100%;
+  height: 50px;
+  color: rgb(26, 187, 85);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 60px;
+  text-align: center;
 }
-.game{
-    display: flex;
-    flex-direction: column;
+.game {
+  display: flex;
+  flex-direction: column;
 }
-.row{
-    display: flex;
-    margin-top: 15px;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-.card{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: 9%;
-    height: 90%;
-    transition: opacity 1s linear;
-    margin: 5px;
-    opacity: 1;
+.row {
+  display: flex;
+  margin-top: 15px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
-.card .back{
-    position: absolute;
-    width: 100%;
-    height: 90%;
-    backface-visibility: hidden;
-    transition: all 0.35s linear;
-    transform: rotateY(0deg);
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 9%;
+  height: 90%;
+  transition: opacity 1s linear;
+  margin: 5px;
+  opacity: 1;
 }
 
-.back:hover{
-    box-shadow: 0px 0px 20px 0px white;
+.card .back {
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  backface-visibility: hidden;
+  transition: all 0.35s linear;
+  transform: rotateY(0deg);
 }
 
-.card .front{
-    backface-visibility: hidden;
-    transition: all 0.35s linear;
-    transform: rotateY(180deg);
+.back:hover {
+  box-shadow: 0px 0px 20px 0px white;
 }
 
-.card img{
-    width: 100%;
+.back:active {
+  transform: rotateY(180deg);
 }
 
-.setupGame{
-    display: block;
-    position: absolute;
-    top: 10%;
-    left: 5%;
-    width: 90%;
-    height: 90%;
-}
-#timeStart{
-    width: 50%;
-    margin: auto;
-    color: red;
-    font-size: 200px;
-    text-align: center;
-    margin-top: 15%;
+.card .front {
+  backface-visibility: hidden;
+  transition: all 0.35s linear;
+  transform: rotateY(180deg);
 }
 
-.setup{
-    display: flex;
-    background: url(img/background2.png) center no-repeat;
-    border-radius: 30px;
-    flex-direction: column;
-    position: absolute;
-    font-size: 35px;
-    color: white;
-    top: 15%;
-    left: 25%;
-    width: 50%;
-    height: 65%;
+.card img {
+  width: 100%;
 }
 
-.image{
-    width: 100%;
-    text-align: center;
-    height: 80%;
-}
-.image img{
-    width: 40%;
+.front:active {
+  transform: rotateY(180deg);
 }
 
-.button{
-    display: flex;
-    width: 100%;
-    height: 20%;
+.setupGame {
+  display: block;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
 }
-.button button{
-    display: block;
-    width: 30%;
-    height: 100%;
-    border-radius: 20px;
-    font-size: 30px;
-    background-color: rgb(29, 125, 125);
-    color: white;
-    margin: auto;
-}
-
-button:hover{
-    background-color: aqua;
+#timeStart {
+  width: 50%;
+  margin: auto;
+  color: red;
+  font-size: 200px;
+  text-align: center;
+  margin-top: 15%;
 }
 
-.end{
-    display: none;
+.setup {
+  display: flex;
+  background: url(img/background2.png) center no-repeat;
+  border-radius: 30px;
+  flex-direction: column;
+  position: absolute;
+  font-size: 35px;
+  color: white;
+  top: 15%;
+  left: 25%;
+  width: 50%;
+  height: 65%;
 }
 
-#ranking{
-    /* display: none; */
-    position: absolute;
-    width: 45%;
-    height: 60%;
-    top: 9%;
-    left: -50%;
-    font-size: 20px;
-    opacity: 0;
-    transition: all 0.3s linear;
-    border-radius: 20px;
+.image {
+  width: 100%;
+  text-align: center;
+  height: 80%;
 }
-.ranking{
-    display: flex;
-    margin: auto;
-    border-radius: 20px;
-    width: 100%;
-    height: 32%;
+.image img {
+  width: 40%;
 }
 
-.easy{
-    border: 4px solid violet;
-    margin-top: 1%;
+.button {
+  display: flex;
+  width: 100%;
+  height: 20%;
+}
+.button button {
+  display: block;
+  width: 30%;
+  height: 100%;
+  border-radius: 20px;
+  font-size: 30px;
+  background-color: rgb(29, 125, 125);
+  color: white;
+  margin: auto;
 }
 
-.medium{
-    border: 4px solid red;
-    margin-top: 1%;
+button:hover {
+  background-color: aqua;
 }
 
-.hard{
-    border: 4px solid gold;
-    margin-top: 1%;
+.end {
+  display: none;
 }
 
-.rank{
-    display: flex;
-    flex-direction: column;
-    width: 75%;
-    margin-left: 5px;
-    font-size: 16px;
-    text-align: center;
+#ranking {
+  /* display: none; */
+  position: absolute;
+  width: 45%;
+  height: 60%;
+  top: 9%;
+  left: -50%;
+  font-size: 20px;
+  opacity: 0;
+  transition: all 0.3s linear;
+  border-radius: 20px;
+}
+.ranking {
+  display: flex;
+  margin: auto;
+  border-radius: 20px;
+  width: 100%;
+  height: 32%;
 }
 
-.gameMode{
-    color: chartreuse;
-    width: 25%;
-    font-size: 30px;
-    text-align: center;
-    padding-top: 7%;
+.easy {
+  border: 4px solid violet;
+  margin-top: 1%;
 }
 
-#openRanking{
-    position: absolute;
-    color: yellow;
-    background-color: rgb(29, 125, 125);
-    text-align: center;
-    border-radius: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    width: 10%;
-    height: 4%;
-    padding: 3.5px;
-    top: 5%;
+.medium {
+  border: 4px solid red;
+  margin-top: 1%;
 }
 
-#show:hover #ranking{
-    /* animation: showRanking 0.3s linear; */
-    left: 0%;
-    opacity: 0.9;
-}
-#show:hover #openRanking{
-    background-color: aqua;
+.hard {
+  border: 4px solid gold;
+  margin-top: 1%;
 }
 
-.information{
-    display: flex;
-    padding-top: 0.7%;
-    border-radius: 15px;
-    background: url(img/background_ranking.jpg) center no-repeat;
+.rank {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  margin-left: 5px;
+  font-size: 16px;
+  text-align: center;
 }
 
-.title{
-    width: 100%;
-    height: 28%;
-    color: white;
-    border: solid 2px white;
+.gameMode {
+  color: chartreuse;
+  width: 25%;
+  font-size: 30px;
+  text-align: center;
+  padding-top: 7%;
 }
 
-.top1{
-    width: 100%;
-    height: 24%;
-    color: gold;
-    border: solid 2px gold;
-    margin-top: 2px;
+#openRanking {
+  position: absolute;
+  color: yellow;
+  background-color: rgb(29, 125, 125);
+  text-align: center;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  width: 10%;
+  height: 4%;
+  padding: 3.5px;
+  top: 5%;
 }
 
-.top2{
-    width: 100%;
-    height: 24%;
-    color: red;
-    border: solid 2px red;
-    margin-top: 2px;
+#show:hover #ranking {
+  /* animation: showRanking 0.3s linear; */
+  left: 0%;
+  opacity: 0.9;
+}
+#show:hover #openRanking {
+  background-color: aqua;
 }
 
-.top3{
-    width: 100%;
-    height: 24%;
-    color: violet;
-    border: solid 2px violet;
-    margin-top: 2px;
+.information {
+  display: flex;
+  padding-top: 0.7%;
+  border-radius: 15px;
+  background: url(img/background_ranking.jpg) center no-repeat;
 }
 
-.level{
-    width: 20%;
+.title {
+  width: 100%;
+  height: 28%;
+  color: white;
+  border: solid 2px white;
 }
 
-.namePlayers{
-    width: 60%;
+.top1 {
+  width: 100%;
+  height: 24%;
+  color: gold;
+  border: solid 2px gold;
+  margin-top: 2px;
 }
 
-.timePlayers{
-    width: 20%;
+.top2 {
+  width: 100%;
+  height: 24%;
+  color: red;
+  border: solid 2px red;
+  margin-top: 2px;
 }
 
-.player{
-    font-size: 20px;
+.top3 {
+  width: 100%;
+  height: 24%;
+  color: violet;
+  border: solid 2px violet;
+  margin-top: 2px;
 }
 
-#inputNamePlayer{
-    display: block;
-    transition: all 0.3s linear;
-    width: 40%;
-    height: 25%;
-    background: url(img/background_getname.jpg) center no-repeat;
-    border-radius: 20px;
-    position: absolute;
-    top: 57%;
-    left: -40%;
-    text-align: center;
-    animation: none;
+.level {
+  width: 20%;
 }
 
-#getName{
-    margin-top: 5%;
-    padding-top: 3%;
-    display: flex;
-    width: 100%;
-    height: 50%;
-    text-align: center;
+.namePlayers {
+  width: 60%;
 }
 
-#getName .get{
-    width: 75%;
+.timePlayers {
+  width: 20%;
 }
 
-#getName .send{
-    width: 25%;
+.player {
+  font-size: 20px;
 }
 
-#getName input{
-    width: 90%;
-    height: 40px;
-    text-align: center;
-    font-size: 30px;
-    font-family: 'Times New Roman', Times, serif;
+#inputNamePlayer {
+  display: block;
+  transition: all 0.3s linear;
+  width: 40%;
+  height: 25%;
+  background: url(img/background_getname.jpg) center no-repeat;
+  border-radius: 20px;
+  position: absolute;
+  top: 57%;
+  left: -40%;
+  text-align: center;
+  animation: none;
 }
 
-.inputNamePlayer p{
-    margin: 3%;
-    font-size: 30px;
-    color: yellow;
+#getName {
+  margin-top: 5%;
+  padding-top: 3%;
+  display: flex;
+  width: 100%;
+  height: 50%;
+  text-align: center;
 }
 
-#getName button{
-    width: 90%;
-    height: 40px;
-    color: red;
-    border-radius: 15px;
-    background-color: rgb(35, 174, 174);
+#getName .get {
+  width: 75%;
+}
+
+#getName .send {
+  width: 25%;
+}
+
+#getName input {
+  width: 90%;
+  height: 40px;
+  text-align: center;
+  font-size: 30px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.inputNamePlayer p {
+  margin: 3%;
+  font-size: 30px;
+  color: yellow;
+}
+
+#getName button {
+  width: 90%;
+  height: 40px;
+  color: red;
+  border-radius: 15px;
+  background-color: rgb(35, 174, 174);
 }
 
 #getName button:hover {
-    background-color: aqua;
+  background-color: aqua;
 }
 
-#msgTimeWin{
-    position: absolute;
-    color: rgb(248, 14, 14);
-    font-size: 40px;
-    animation: none;
+#msgTimeWin {
+  position: absolute;
+  color: rgb(248, 14, 14);
+  font-size: 40px;
+  animation: none;
 }
 
-@keyframes showTime{
-    0%{opacity: 0; left: 0%; top: 10%;}
-    20%{opacity: 1; left: 35%; top: 10%;}
-    85%{opacity: 1; left: 35%; top: 10%;}
-    100%{opacity: 0; left: 100%; top: 10%;}
+@keyframes showTime {
+  0% {
+    opacity: 0;
+    left: 0%;
+    top: 10%;
+  }
+  20% {
+    opacity: 1;
+    left: 35%;
+    top: 10%;
+  }
+  85% {
+    opacity: 1;
+    left: 35%;
+    top: 10%;
+  }
+  100% {
+    opacity: 0;
+    left: 100%;
+    top: 10%;
+  }
 }
 
 /* @keyframes showRanking{

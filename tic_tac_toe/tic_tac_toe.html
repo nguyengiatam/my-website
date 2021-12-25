@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="img_game_caro/favicon.png">
     <title>Tic Tac Toe</title>
     <style>
         #khung{
@@ -51,7 +52,7 @@
                 }
                 else{
                     if(luot == true){ 
-                        o_co[i].innerHTML = "<img src='/img_game_caro/x.png'>";
+                        o_co[i].innerHTML = "<img src='img_game_caro/x.png'>";
                         x[i] = true;
                         luot = false;
                         check(i, 1, x, "X");
@@ -70,7 +71,7 @@
 
                     else{
                         o[i] = true;
-                        o_co[i].innerHTML = "<img src='/img_game_caro/o.png'>";
+                        o_co[i].innerHTML = "<img src='img_game_caro/o.png'>";
                         luot = true;
                         check(i, 1, o, "O");
                         check(i, -1, o, "O");

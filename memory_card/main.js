@@ -16,10 +16,7 @@ image.showImageStart();
 player.printDataPlayer();
 
 $(".card").click(function(){
-    if(waitForTest == true || $(this).css("opacity") == "0"){
-
-    }
-    else{
+    if(!waitForTest && $(this).css("opacity") != "0"){
         let i = $(".card").index(this);
         listCard[i].faceUp();
         if(cardOne !== undefined && listCard[i].index != cardOne.index){

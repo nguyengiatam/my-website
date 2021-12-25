@@ -20,26 +20,22 @@ class Car extends Location{
     carControl(keyCode){
         switch(keyCode){
             case UP: 
-                if(this.top <= 0){}
-                else{
+                if(this.top > 0){
                     this.top -= 15;
                 }
                 break;
             case DOWN: 
-                if(this.top >= 620){}
-                else{
+                if(this.top < 620){
                     this.top += 5;
                 }
                 break;
             case LEFT: 
-                if(this.left <= 135){}
-                else{
+                if(this.left > 135){
                     this.left -= 10;
                 }
                 break;
             case RIGHT: 
-                if(this.left >= 315){}
-                else{
+                if(this.left < 315){
                     this.left += 10;
                 }
                 break;
@@ -61,22 +57,22 @@ class Car extends Location{
     }
 
     checkImpactByCar(car){
-        if(this.checkPoint(car.top, car.left) == true){
+        if(this.checkPoint(car.top, car.left)){
             pointImpactY = car.top;
             pointImpactX = car.left;
             return true;
         }
-        if(this.checkPoint(car.top, car.right) == true){
+        if(this.checkPoint(car.top, car.right)){
             pointImpactY = car.top;
             pointImpactX = car.right;
             return true;
         }
-        if(this.checkPoint(car.bottom, car.left) == true){
+        if(this.checkPoint(car.bottom, car.left)){
             pointImpactY = car.bottom;
             pointImpactX = car.left;
             return true;
         }
-        if(this.checkPoint(car.bottom, car.right) == true){
+        if(this.checkPoint(car.bottom, car.right)){
             pointImpactY = car.bottom;
             pointImpactX = car.right;
             return true;

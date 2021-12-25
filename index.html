@@ -10,17 +10,13 @@
 </head>
 <body>
     <div id="main">
-        <div id="banner"><a href="index.html"><img src="banner.png" alt="Trang chủ" ></a></div>
+        <div id="banner"><a href="/"><img src="banner.png" alt="Trang chủ" ></a></div>
         <div id="menu">
-            <div class="menu"><a href="index.html" >Trang chủ</a></div>
+            <div class="menu"><a href="/" >Trang chủ</a></div>
             <div class="menu"><a href="about.html" >Giới thiệu</a></div>
         </div>
         <div id="san_pham">
-            <div class="san_pham"><a href="snake.html" target="_blank"><img src="img_snake/snake.jpg" alt="Rắn săn mồi" ><br/>Rắn săn mồi</a></div>
-            <div class="san_pham"><a href="tic_tac_toe.html" target="_blank"><img src="img_game_caro/icon.png" alt="Tic Tac Toe"><br/>Tic Tac Toe</a></div>
-            <div class="san_pham"><a href="Faking.html" target="_blank"><img src="img_faking/faking.png" alt="Game Vui"><br/>Faking</a></div>
-            <div class="san_pham"><a href="memory_card/game.html" target="_blank"><img src="memory_card/img/back.png" alt="memory card"><br>Memory Card</a></div>
-            <div class="san_pham"><a href="lai_xe/game_lai_xe.html" target="_blank"><img src="lai_xe/img/mycar1.png" alt="Lái Xe"><br/>Lái Xe Ngược Chiều</a></div>
+            {%LIST-PRODUCT%}
         </div>
     </div>
 </body>
