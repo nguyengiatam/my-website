@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="img/icon.png">
+    <style>
+        body{
+            text-align: center;
+        }
+        #title{
+            font-size: 300%;
+        }
+        .selectMode{
+            margin: 0 auto;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            width: 384px;
+            font-size: 18px;
+        }
+
+        .select{
+            display: flex;
+            width: 50%;
+        }
+
+        #level{
+            text-align: center;
+            display: block;
+            width: 55%;
+            border-radius: 20px;
+        }
+
+        .checkCorectness{
+            justify-content: left;
+        }
+
+        .level{
+            display: flex;
+            justify-content: right;
+        }
+        .col{
+            width: 40px;
+            height: 40px;
+            border: solid 1px black;
+            cursor: pointer;
+        }
+        .row{
+            display: flex;
+            justify-content: center;
+        }
+        .horizontal{
+            border-top: solid 3px black;
+        }
+        .vertical {
+            border-left: solid 3px black;
+        }
+        #map{
+            width: 100%;
+            margin-top: 5px;
+            box-sizing: border-box;
+            font-size: 32px;
+        }
+
+        .border-right{
+            border-right: 3px solid black;
+        }
+
+        .border-bottom{
+            border-bottom: solid 3px black;
+        }
+
+        .newGame{
+            justify-content: right;
+            cursor: pointer;
+        }
+
+        #newGame:hover{
+            color: aqua;
+        }
+
+    </style>
+    <title>Sodoku</title>
+</head>
+<body>
+    <div id="title">Sudoku</div>
+    <div class="selectMode">
+        <div class="select time">
+            <div>Thời gian: </div>
+            <div id="time">00:00</div>
+        </div>
+        <div class="select newGame">
+            <div id="newGame">Trò chơi mới</div>
+        </div>
+    </div>
+    <div class="selectMode">
+        <div class="select checkCorectness">
+            <div>
+                <span>Kiểm tra lỗi: </span>
+            </div>
+            <div class="toggle">
+                <label for="checkbox"></label>
+                <input type="checkbox" checked='checked' id="checkError">  
+            </div>
+            
+        </div>
+        <div>
+            <div><span>Lỗi:</span><span id="error">0/3</span></div>
+        </div>
+        <div class="select level">
+            <div><span>Độ khó: </span></div>
+            <select id="level">
+                <option value="38">Dễ</option>
+                <option value="32">Trung bình</option>
+                <option value="25">Khó</option>
+                <option value="22">Chuyên gia</option>
+            </select>    
+        </div>
+        
+    </div>
+    <div id="map"></div>
+    <script src="engine.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
