@@ -10,7 +10,7 @@ const sever = http.createServer((req, res) => {
   const path = url.parse(req.url, true);
   let pathName = path.pathname;
 
-  if (pathName === "/" || pathName === '/index.html') {
+  if (pathName === "/") {
     res.writeHead(200, {'Content-type' : 'text/html'});
     res.write(getIndex());
   } else {
