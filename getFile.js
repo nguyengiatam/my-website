@@ -1,15 +1,23 @@
-const fs = require('fs');
-const dataProduct = JSON.parse(fs.readFileSync('./data/data.json'));
+const {readFile} = require('fs/promises');
 
-const getIndex = () => {
-    let index = fs.readFileSync('./index.html', 'utf-8');
-    return index.replace('{%LIST-PRODUCT%}', getListProduct())
+const getIndex = async () => {
+    try {
+        let file = await readFile('./index.html', 'utf-8');
+        return file.replace('{%LIST-PRODUCT%}', await getListProduct());
+    } catch (error) {
+        console.log(error);
+    }
   }
 
-const getListProduct = () => {
-    const temp = fs.readFileSync(`${__dirname}/template/template-product.html`, 'utf-8');
-    const result = dataProduct.map(product => replaceTemplate(temp, product));
-    return result.join('');
+const getListProduct = async () => {
+    try {
+        const dataProduct = JSON.parse(await readFile('./data/data.json', 'utf-8'));
+        const temp = await readFile(`${__dirname}/template/template-product.html`, 'utf-8');
+        const result = dataProduct.map(product => replaceTemplate(temp, product));
+        return result.join('');
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 const replaceTemplate = (temp, product) => {
@@ -21,8 +29,5 @@ const replaceTemplate = (temp, product) => {
 }
 
 module.exports = {
-    dataProduct,
-    getListProduct,
-    replaceTemplate,
     getIndex,
 }
